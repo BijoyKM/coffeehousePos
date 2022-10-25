@@ -12,7 +12,11 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('coffeehousePos')
 
-coffee = SHEET.worksheet('coffee')
-data = coffee.get_all_values()
 
-print(data)
+def get_cust_name():
+    print("*****Welcome to Coffeehouse!!*****\n")
+    cust_name = input("Please enter your name:")
+    print(cust_name)
+
+
+get_cust_name()
