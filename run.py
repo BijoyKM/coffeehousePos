@@ -1,5 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import random
+import string
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -18,7 +20,16 @@ def validate_cust_name(value):
     Function to validate if entered name is all characters
     """
     if value.isalpha():
-        return True
+        if len(value) < 2 or len(value) > 25:
+            return False
+    return True
+
+
+def create_order_num(chars=string.ascii_uppercase + string.digits, N=5):
+    return ''.join(random.choice(chars) for i in range (N))
+
+
+order_num = create_order_num()
 
 
 def get_cust_name():
@@ -26,9 +37,11 @@ def get_cust_name():
     Function for getting customer name
     """
     print("*****Welcome to Coffeehouse!!*****\n")
-    cust_name = input("Please enter your name:")
+    print("Please provide your name. It should be in between 2 to 25 characters long.")
+    cust_name = input("Please enter your name: ")
     if validate_cust_name(cust_name):
-        print(f"Hi {cust_name}, Your order number: \n")
+        print(f"Hello {cust_name}")
+        print(f"Your order number is: {order_num}")
         print("Please provide this at the counter when paying for the order.")
     else:
         print("Please enter a valid name. Thanks")
