@@ -23,7 +23,7 @@ def validate_cust_name(value):
     if value.isalpha():
         if len(value) < 2 or len(value) > 25:
             return False
-    return True
+        return True
 
 
 def create_order_num(chars=string.ascii_uppercase + string.digits, N=5):
@@ -35,21 +35,28 @@ def create_order_num(chars=string.ascii_uppercase + string.digits, N=5):
 
 ORDER_NUM = create_order_num()
 
-
 def get_cust_name():
     """
     Function for getting customer name
     """
     print("*****Welcome to Coffeehouse!!*****\n")
-    print("Please provide your name."
-          + "It should be in between 2 to 25 characters long.")
-    cust_name = input("Please enter your name: ")
-    if validate_cust_name(cust_name):
-        print(f"Hello {cust_name}")
-        print(f"Your order number is: {ORDER_NUM}")
-        print("Please provide this at the counter when paying for the order.")
-    else:
-        print("Please enter a valid name. Thanks")
+    while True:
+        print("Please provide your name. "
+              + "It should be in between 2 to 25 characters long.")
+        cust_name = input("Please enter your name: ")
+        if validate_cust_name(cust_name):
+            print(f"Hello {cust_name}")
+            print(f"Your order number is: {ORDER_NUM}")
+            print("Please provide this at the counter when paying"
+                + "for the order.")
+            break
+        else:
+            print("Please enter a valid name. Thanks")
+            
+    enter = input(f"Press Enter for Order Screen:")
+    if enter == '':
+        order_screen()
+
 
 
 def clear_screen():
@@ -62,5 +69,22 @@ def clear_screen():
         system('clear')
 
 
+def order_screen():
+    """
+    Function providing the order screen
+    """
+    clear_screen()
+    print('********************************')
+    print("Order Screen")
+    print('********************************')
+    print("1. Coffee")
+    print("2. Tea")
+    print("3. Desserts")
+    print("4. Update Order")
+    print("5. Checkout")
+    print('********************************')
+    print("Enter Choice: ")
+
+
+
 get_cust_name()
-clear_screen()
