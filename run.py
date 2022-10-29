@@ -69,21 +69,71 @@ def clear_screen():
         system('clear')
 
 
+def coffee_screen():
+    """
+    Function providing the coffee screen
+    """
+    clear_screen()
+    print('********************************')
+    print("Coffee Screen")
+    print('********************************')
+    coffee_data = SHEET.worksheet('coffee').get_all_values()
+    print(coffee_data)
+
+
+def tea_screen():
+    """
+    Function providing the tea screen
+    """
+    clear_screen()
+    print('********************************')
+    print("Tea Screen")
+    print('********************************')
+    tea_data = SHEET.worksheet('tea').get_all_values()
+    print(tea_data)
+
+
+def desserts_screen():
+    """
+    Function providing the desserts screen
+    """
+    clear_screen()
+    print('********************************')
+    print("Desserts Screen")
+    print('********************************')
+    desserts_data = SHEET.worksheet('desserts').get_all_values()
+    print(desserts_data)
+
+
 def order_screen():
     """
     Function providing the order screen
     """
-    clear_screen()
-    print('********************************')
-    print("Order Screen")
-    print('********************************')
-    print("1. Coffee")
-    print("2. Tea")
-    print("3. Desserts")
-    print("4. Update Order")
-    print("5. Checkout")
-    print('********************************')
-    print("Enter Choice: ")
+    while True:
+        print('********************************')
+        print("Order Screen")
+        print('********************************')
+        print("1. Coffee")
+        print("2. Tea")
+        print("3. Desserts")
+        print("4. Update Order")
+        print("5. Checkout")
+        print('********************************')
+        choice = input("Enter Choice: ")
+        if choice == '1':
+            coffee_screen()
+            break
+        elif choice == '2':
+            tea_screen()
+            break
+        elif choice == '3':
+            desserts_screen()
+            break
+        else:
+            clear_screen()
+            print("Please enter a valid response like 1 for Coffee,"
+            + "2 for Tea etc.\n")
+        
 
 
 
