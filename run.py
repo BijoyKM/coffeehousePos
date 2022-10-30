@@ -54,10 +54,14 @@ def get_cust_name():
         else:
             print("Please enter a valid name. Thanks")
             
-    enter = input(f"Press Enter for Order Screen:")
-    if enter == '':
-        order_screen()
-
+    while True:
+        enter = input(f"Press Enter for Order Screen:")
+        if enter == '':
+            order_screen()
+            break
+        else:
+            print(f"Please try again.")
+        
 
 def clear_screen():
     """
@@ -86,7 +90,7 @@ def coffee_screen():
     for x, y in zip(coffee_item_row, coffee_price_row):
         print(f"{z}: {x} ============= € {y}\n")
         z += 1
-
+    print("7: This is a test line.")
 
 def tea_screen():
     """
