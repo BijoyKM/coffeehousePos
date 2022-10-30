@@ -35,6 +35,7 @@ def create_order_num(chars=string.ascii_uppercase + string.digits, N=5):
 
 ORDER_NUM = create_order_num()
 
+
 def get_cust_name():
     """
     Function for getting customer name
@@ -48,7 +49,7 @@ def get_cust_name():
             print(f"Hello {cust_name}")
             print(f"Your order number is: {ORDER_NUM}")
             print("Please provide this at the counter when paying"
-                + "for the order.")
+                  + "for the order.")
             break
         else:
             print("Please enter a valid name. Thanks")
@@ -56,7 +57,6 @@ def get_cust_name():
     enter = input(f"Press Enter for Order Screen:")
     if enter == '':
         order_screen()
-
 
 
 def clear_screen():
@@ -78,7 +78,14 @@ def coffee_screen():
     print("Coffee Screen")
     print('********************************')
     coffee_data = SHEET.worksheet('coffee').get_all_values()
-    print(coffee_data)
+    # for x in range(len(coffee)):
+    #     print(f"{coffee_data[x]}===== €{coffee[x]}")
+    coffee_item_row = coffee_data[0]
+    coffee_price_row = coffee_data[-1]
+    z = 1
+    for x, y in zip(coffee_item_row, coffee_price_row):
+        print(f"{z}: {x} ============= € {y}\n")
+        z += 1
 
 
 def tea_screen():
@@ -132,9 +139,7 @@ def order_screen():
         else:
             clear_screen()
             print("Please enter a valid response like 1 for Coffee,"
-            + "2 for Tea etc.\n")
-        
-
+                  + "2 for Tea etc.\n")
 
 
 get_cust_name()
