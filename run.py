@@ -38,7 +38,8 @@ ORDER_NUM = create_order_num()
 
 def get_cust_name():
     """
-    Function for getting customer name
+    Function for getting customer name, 
+    adds order number and customer name to order_worksheet
     """
     print("*****Welcome to Coffeehouse!!*****\n")
     while True:
@@ -47,9 +48,12 @@ def get_cust_name():
         cust_name = input("Please enter your name: ")
         if validate_cust_name(cust_name):
             print(f"Hello {cust_name}")
+            order_worksheet = SHEET.worksheet("order")
+            order_worksheet.update_cell(2, 1, ORDER_NUM)
+            order_worksheet.update_cell(2, 2, cust_name)
             print(f"Your order number is: {ORDER_NUM}")
             print("Please provide this at the counter when paying"
-                  + "for the order.")
+                  + " for the order.")
             break
         else:
             print("Please enter a valid name. Thanks")
@@ -61,7 +65,7 @@ def get_cust_name():
             break
         else:
             print(f"Please try again.")
-        
+
 
 def clear_screen():
     """
@@ -72,6 +76,8 @@ def clear_screen():
     else:
         system('clear')
 
+# def update_order():
+    
 
 def coffee_screen():
     """
@@ -91,6 +97,8 @@ def coffee_screen():
         print(f"{z}: {x} ============= € {y}\n")
         z += 1
     print("7: This is a test line.")
+    # print(ORDER_NUM, CUSTOMER_NAME)
+
 
 def tea_screen():
     """
