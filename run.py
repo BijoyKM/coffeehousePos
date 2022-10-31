@@ -46,7 +46,7 @@ def get_cust_name():
     while True:
         print("Please provide your name. "
               + "It should be in between 2 to 25 characters long.")
-        cust_name = input("Please enter your name: ")
+        cust_name = input("Please enter your name: \n")
         if validate_cust_name(cust_name):
             print(f"Hello {cust_name}")
             order_worksheet = SHEET.worksheet("order")
@@ -60,7 +60,7 @@ def get_cust_name():
             print("Please enter a valid name. Thanks")
             
     while True:
-        enter = input(f"Press Enter for Order Screen:")
+        enter = input(f"Press Enter for Order Screen:\n")
         if enter == '':
             order_screen()
             break
@@ -101,7 +101,7 @@ def coffee_screen():
         z += 1
     print("7: Payment")
     while True:
-        choice = input("Enter Choice: ")
+        choice = input("Enter Choice: \n")
         if choice == '1':
             coffee_data = SHEET.worksheet('coffee')
             order_worksheet = SHEET.worksheet("order")
@@ -173,7 +173,7 @@ def order_screen():
         print("4. Update Order")
         print("5. Checkout")
         print('********************************')
-        choice = input("Enter Choice: ")
+        choice = input("Enter Choice: \n")
         if choice == '1':
             coffee_screen()
             break
