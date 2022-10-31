@@ -34,6 +34,7 @@ def create_order_num(chars=string.ascii_uppercase + string.digits, N=5):
 
 
 ORDER_NUM = create_order_num()
+ORDER_TOTAL = None
 
 
 def get_cust_name():
@@ -76,29 +77,63 @@ def clear_screen():
     else:
         system('clear')
 
-# def update_order():
-    
+# def update_order_total(sheetdata, order):
+#     order_worksheet = SHEET.worksheet("order")
+#     sheet_worksheet = SHEET.worksheet("sheetdata")
+#     cell = worksheet.find("Dough")
+
 
 def coffee_screen():
     """
     Function providing the coffee screen
     """
     clear_screen()
+    item_price = None
     print('********************************')
     print("Coffee Screen")
     print('********************************')
     coffee_data = SHEET.worksheet('coffee').get_all_values()
-    # for x in range(len(coffee)):
-    #     print(f"{coffee_data[x]}===== €{coffee[x]}")
     coffee_item_row = coffee_data[0]
     coffee_price_row = coffee_data[-1]
     z = 1
     for x, y in zip(coffee_item_row, coffee_price_row):
         print(f"{z}: {x} ============= € {y}\n")
         z += 1
-    print("7: This is a test line.")
-    # print(ORDER_NUM, CUSTOMER_NAME)
+    print("7: Payment")
+    while True:
+        choice = input("Enter Choice: ")
+        if choice == '1':
+            coffee_data = SHEET.worksheet('coffee')
+            order_worksheet = SHEET.worksheet("order")
+            item_price = coffee_data.cell(2,1).value
+            order_worksheet.update_cell(2, 3, item_price)
+            item_value = 1
+            order_worksheet.update_cell(2, 4, item_value)
+            break
+            # print(f"Your order:{ORDER_NUM}:\n " + 
+            # f"{item_value} {coffee_item_row[0]} Total: €{item_price}")
+          
 
+        elif choice == '2':
+            coffee_data = SHEET.worksheet('coffee')
+            order_worksheet = SHEET.worksheet("order")
+            item_price = coffee_data.cell(2,2).value
+            order_worksheet.update_cell(2, 3, item_price)
+            item_value = 1
+            order_worksheet.update_cell(2, 5, item_value)
+            break
+            # print(f"Your order:{ORDER_NUM}:\n " + 
+            # f"{item_value} {coffee_item_row[1]} Total: €{item_price}")
+    
+    print(f"Your order:{ORDER_NUM}:\n " + 
+            f"{item_value} {coffee_item_row[0]} Total: €{item_price}")
+
+    sales_value_row = order_worksheet.row_values(2)
+    order_worksheet.delete_rows(2)
+    print(sales_value_row)
+    sales_worksheet = SHEET.worksheet("sales")
+    sales_worksheet.append_row(sales_value_row)
+    
 
 def tea_screen():
     """
