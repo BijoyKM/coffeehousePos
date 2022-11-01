@@ -26,11 +26,11 @@ def validate_cust_name(value):
         return True
 
 
-def create_order_num(chars=string.ascii_uppercase + string.digits, N=5):
+def create_order_num(chars=string.ascii_uppercase + string.digits, length=5):
     """
     Function to create alphanumeric order number of 5 character length
     """
-    return ''.join(random.choice(chars) for i in range(N))
+    return ''.join(random.choice(chars) for i in range(length))
 
 
 ORDER_NUM = create_order_num()
@@ -78,32 +78,6 @@ def clear_screen():
         system('clear')
 
 
-# def jls_extract_def():
-    
-#     return 
-
-
-# # def update_order_coffee(choice):
-# #     """
-# #     Updating sales sheet as per customer's choice from coffee sheet
-# #     """
-# #     print(int(choice))
-# #     group_data = SHEET.worksheet('coffee').get_all_values()
-# #     print(group_data)
-# #     # group_data = SHEET.worksheet('coffee')
-# #     # print(group_data)
-# #     order_worksheet = SHEET.worksheet("order")
-# #     item_row = group_data[0]
-# #     # print(item_row)
-# #     price_row = group_data[-1]
-# #     print(price_row)
-# #     order_worksheet.update_cell(2, 3, group_data.cell('2', int(choice)).value)
-# #     item_value = 1
-# #     order_worksheet.update_cell(2, ((int(choice))+2), item_value)
-# #     print(f"Your order:{ORDER_NUM}")
-# #     print(f"{item_value} {item_row[(int(choice))-1]} Total: €{group_data.cell('2', int(choice)).value}")
-
-
 def update_sales_sheet():
     """
     Function updates sales sheet with temporary order sheet
@@ -131,10 +105,10 @@ def coffee_screen():
     coffee_price_row = coffee_data[-1]
     coffee_data = SHEET.worksheet('coffee')
     order_worksheet = SHEET.worksheet("order")
-    z = 1
-    for x, y in zip(coffee_item_row, coffee_price_row):
-        print(f"{z}: {x} ============= € {y}\n")
-        z += 1
+    item_num = 1
+    for item_name, price in zip(coffee_item_row, coffee_price_row):
+        print(f"{item_num}: {item_name} ============= € {price}\n")
+        item_num += 1
     while True:
         choice = input("Enter Choice: \n")
         if choice == '1':
@@ -227,10 +201,10 @@ def tea_screen():
     tea_price_row = tea_data[-1]
     tea_data = SHEET.worksheet('tea')
     order_worksheet = SHEET.worksheet("order")
-    z = 1
-    for x, y in zip(tea_item_row, tea_price_row):
-        print(f"{z}: {x} ============= € {y}\n")
-        z += 1
+    item_num = 1
+    for item_name, price in zip(tea_item_row, tea_price_row):
+        print(f"{item_num}: {item_name} ============= € {price}\n")
+        item_num += 1
     while True:
         choice = input("Enter Choice: \n")
         if choice == '1':
