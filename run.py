@@ -78,22 +78,43 @@ def clear_screen():
         system('clear')
 
 
-# def update_order(choice):
-#     """
-#     Updating sales sheet according to the customer choice
-#     """
-#     x = int(choice)
-#     group_data = SHEET.worksheet('coffee').get_all_values()
-#     group_data = SHEET.worksheet('coffee')
-#     order_worksheet = SHEET.worksheet("order")
-#     item_row = group_data[0]
-#     price_row = group_data[-1]
-#     item_price = group_data.cell('2', x).value
-#     order_worksheet.update_cell(2, 3, item_price)
-#     item_value = 1
-#     order_worksheet.update_cell(2, (x+2), item_value)
-#     print(f"Your order:{ORDER_NUM}")
-#     print(f"{item_value} {item_row[x-1]} Total: €{item_price}")
+# def jls_extract_def():
+    
+#     return 
+
+
+# # def update_order_coffee(choice):
+# #     """
+# #     Updating sales sheet as per customer's choice from coffee sheet
+# #     """
+# #     print(int(choice))
+# #     group_data = SHEET.worksheet('coffee').get_all_values()
+# #     print(group_data)
+# #     # group_data = SHEET.worksheet('coffee')
+# #     # print(group_data)
+# #     order_worksheet = SHEET.worksheet("order")
+# #     item_row = group_data[0]
+# #     # print(item_row)
+# #     price_row = group_data[-1]
+# #     print(price_row)
+# #     order_worksheet.update_cell(2, 3, group_data.cell('2', int(choice)).value)
+# #     item_value = 1
+# #     order_worksheet.update_cell(2, ((int(choice))+2), item_value)
+# #     print(f"Your order:{ORDER_NUM}")
+# #     print(f"{item_value} {item_row[(int(choice))-1]} Total: €{group_data.cell('2', int(choice)).value}")
+
+
+def update_sales_sheet():
+    """
+    Function updates sales sheet with temporary order sheet
+    and clears order sheet
+    """
+    order_worksheet = SHEET.worksheet("order")
+    sales_value_row = order_worksheet.row_values(2)
+    order_worksheet.delete_rows(2)
+    print("Please pay at the counter. Thank you for the business.")
+    sales_worksheet = SHEET.worksheet("sales")
+    sales_worksheet.append_row(sales_value_row)
 
 
 def coffee_screen():
@@ -176,18 +197,18 @@ def coffee_screen():
             print(f"Your order#: {ORDER_NUM}")
             print(f"{item_value} {coffee_item_row[5]} Total: €{item_price}")
             break
-        
-    sales_value_row = order_worksheet.row_values(2)
-    order_worksheet.delete_rows(2)
-    print("Please pay at the counter. Thankyou for the business.")
-    sales_worksheet = SHEET.worksheet("sales")
-    sales_worksheet.append_row(sales_value_row)
+    # sales_value_row = order_worksheet.row_values(2)
+    # order_worksheet.delete_rows(2)
+    # print("Please pay at the counter. Thank you for the business.")
+    # sales_worksheet = SHEET.worksheet("sales")
+    # sales_worksheet.append_row(sales_value_row)
+    update_sales_sheet()
 
     while True:
-        enter = input("Press Enter for Order Screen:\n")
+        enter = input("Press Enter to Start Again. Thanks:\n")
         if enter == '':
             clear_screen()
-            order_screen()
+            get_cust_name()
             break
         else:
             print("Please try again.")
