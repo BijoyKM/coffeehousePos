@@ -39,7 +39,7 @@ ORDER_TOTAL = None
 
 def get_cust_name():
     """
-    Function for getting customer name, 
+    Function for getting customer name,
     adds order number and customer name to order_worksheet
     """
     print("*****Welcome to Coffeehouse!!*****\n")
@@ -58,14 +58,14 @@ def get_cust_name():
             break
         else:
             print("Please enter a valid name. Thanks")
-            
+
     while True:
-        enter = input(f"Press Enter for Order Screen:\n")
+        enter = input("Press Enter for Order Screen:\n")
         if enter == '':
             order_screen()
             break
         else:
-            print(f"Please try again.")
+            print("Please try again.")
 
 
 def clear_screen():
@@ -77,10 +77,23 @@ def clear_screen():
     else:
         system('clear')
 
-# def update_order_total(sheetdata, order):
+
+# def update_order(choice):
+#     """
+#     Updating sales sheet according to the customer choice
+#     """
+#     x = int(choice)
+#     group_data = SHEET.worksheet('coffee').get_all_values()
+#     group_data = SHEET.worksheet('coffee')
 #     order_worksheet = SHEET.worksheet("order")
-#     sheet_worksheet = SHEET.worksheet("sheetdata")
-#     cell = worksheet.find("Dough")
+#     item_row = group_data[0]
+#     price_row = group_data[-1]
+#     item_price = group_data.cell('2', x).value
+#     order_worksheet.update_cell(2, 3, item_price)
+#     item_value = 1
+#     order_worksheet.update_cell(2, (x+2), item_value)
+#     print(f"Your order:{ORDER_NUM}")
+#     print(f"{item_value} {item_row[x-1]} Total: €{item_price}")
 
 
 def coffee_screen():
@@ -95,45 +108,90 @@ def coffee_screen():
     coffee_data = SHEET.worksheet('coffee').get_all_values()
     coffee_item_row = coffee_data[0]
     coffee_price_row = coffee_data[-1]
+    coffee_data = SHEET.worksheet('coffee')
+    order_worksheet = SHEET.worksheet("order")
     z = 1
     for x, y in zip(coffee_item_row, coffee_price_row):
         print(f"{z}: {x} ============= € {y}\n")
         z += 1
-    print("7: Payment")
     while True:
         choice = input("Enter Choice: \n")
         if choice == '1':
             coffee_data = SHEET.worksheet('coffee')
             order_worksheet = SHEET.worksheet("order")
-            item_price = coffee_data.cell(2,1).value
+            item_price = coffee_data.cell('2', 1).value
             order_worksheet.update_cell(2, 3, item_price)
             item_value = 1
             order_worksheet.update_cell(2, 4, item_value)
+            print(f"Your order#: {ORDER_NUM}")
+            print(f"{item_value} {coffee_item_row[0]} Total: €{item_price}")
             break
-            # print(f"Your order:{ORDER_NUM}:\n " + 
-            # f"{item_value} {coffee_item_row[0]} Total: €{item_price}")
-          
-
         elif choice == '2':
             coffee_data = SHEET.worksheet('coffee')
             order_worksheet = SHEET.worksheet("order")
-            item_price = coffee_data.cell(2,2).value
+            item_price = coffee_data.cell('2', 2).value
             order_worksheet.update_cell(2, 3, item_price)
             item_value = 1
             order_worksheet.update_cell(2, 5, item_value)
+            print(f"Your order#: {ORDER_NUM}")
+            print(f"{item_value} {coffee_item_row[1]} Total: €{item_price}")
             break
-            # print(f"Your order:{ORDER_NUM}:\n " + 
-            # f"{item_value} {coffee_item_row[1]} Total: €{item_price}")
-    
-    print(f"Your order:{ORDER_NUM}:\n " + 
-            f"{item_value} {coffee_item_row[0]} Total: €{item_price}")
-
+        elif choice == '3':
+            coffee_data = SHEET.worksheet('coffee')
+            order_worksheet = SHEET.worksheet("order")
+            item_price = coffee_data.cell('2', 3).value
+            order_worksheet.update_cell(2, 3, item_price)
+            item_value = 1
+            order_worksheet.update_cell(2, 6, item_value)
+            print(f"Your order#: {ORDER_NUM}")
+            print(f"{item_value} {coffee_item_row[2]} Total: €{item_price}")
+            break
+        elif choice == '4':
+            coffee_data = SHEET.worksheet('coffee')
+            order_worksheet = SHEET.worksheet("order")
+            item_price = coffee_data.cell('2', 4).value
+            order_worksheet.update_cell(2, 3, item_price)
+            item_value = 1
+            order_worksheet.update_cell(2, 7, item_value)
+            print(f"Your order#: {ORDER_NUM}")
+            print(f"{item_value} {coffee_item_row[3]} Total: €{item_price}")
+            break
+        elif choice == '5':
+            coffee_data = SHEET.worksheet('coffee')
+            order_worksheet = SHEET.worksheet("order")
+            item_price = coffee_data.cell('2', 5).value
+            order_worksheet.update_cell(2, 3, item_price)
+            item_value = 1
+            order_worksheet.update_cell(2, 8, item_value)
+            print(f"Your order#: {ORDER_NUM}")
+            print(f"{item_value} {coffee_item_row[4]} Total: €{item_price}")
+            break
+        elif choice == '6':
+            coffee_data = SHEET.worksheet('coffee')
+            order_worksheet = SHEET.worksheet("order")
+            item_price = coffee_data.cell('2', 6).value
+            order_worksheet.update_cell(2, 3, item_price)
+            item_value = 1
+            order_worksheet.update_cell(2, 9, item_value)
+            print(f"Your order#: {ORDER_NUM}")
+            print(f"{item_value} {coffee_item_row[5]} Total: €{item_price}")
+            break
+        
     sales_value_row = order_worksheet.row_values(2)
     order_worksheet.delete_rows(2)
-    print(sales_value_row)
+    print("Please pay at the counter. Thankyou for the business.")
     sales_worksheet = SHEET.worksheet("sales")
     sales_worksheet.append_row(sales_value_row)
-    
+
+    while True:
+        enter = input("Press Enter for Order Screen:\n")
+        if enter == '':
+            clear_screen()
+            order_screen()
+            break
+        else:
+            print("Please try again.")
+
 
 def tea_screen():
     """
