@@ -296,21 +296,83 @@ def desserts_screen():
     desserts_data = SHEET.worksheet('desserts')
     order_worksheet = SHEET.worksheet("order")
     item_num = 1
-    for item_name, price in zip(coffee_item_row, coffee_price_row):
+    for item_name, price in zip(desserts_item_row, desserts_price_row):
         print(f"{item_num}: {item_name} ============= € {price}\n")
         item_num += 1
     while True:
         choice = input("Enter Choice: \n")
         if choice == '1':
-            coffee_data = SHEET.worksheet('coffee')
+            desserts_data = SHEET.worksheet('desserts')
             order_worksheet = SHEET.worksheet("order")
-            item_price = coffee_data.cell('2', 1).value
+            item_price = desserts_data.cell('2', 1).value
             order_worksheet.update_cell(2, 3, item_price)
             item_value = 1
-            order_worksheet.update_cell(2, 4, item_value)
+            order_worksheet.update_cell(2, 16, item_value)
             print(f"Your order#: {ORDER_NUM}")
-            print(f"{item_value} {coffee_item_row[0]} Total: €{item_price}")
+            print(f"{item_value} {desserts_item_row[0]} Total: €{item_price}")
             break
+        if choice == '2':
+            desserts_data = SHEET.worksheet('desserts')
+            order_worksheet = SHEET.worksheet("order")
+            item_price = desserts_data.cell('2', 2).value
+            order_worksheet.update_cell(2, 3, item_price)
+            item_value = 1
+            order_worksheet.update_cell(2, 17, item_value)
+            print(f"Your order#: {ORDER_NUM}")
+            print(f"{item_value} {desserts_item_row[1]} Total: €{item_price}")
+            break
+        if choice == '3':
+            desserts_data = SHEET.worksheet('desserts')
+            order_worksheet = SHEET.worksheet("order")
+            item_price = desserts_data.cell('2', 3).value
+            order_worksheet.update_cell(2, 3, item_price)
+            item_value = 1
+            order_worksheet.update_cell(2, 18, item_value)
+            print(f"Your order#: {ORDER_NUM}")
+            print(f"{item_value} {desserts_item_row[2]} Total: €{item_price}")
+            break
+        if choice == '4':
+            desserts_data = SHEET.worksheet('desserts')
+            order_worksheet = SHEET.worksheet("order")
+            item_price = desserts_data.cell('2', 4).value
+            order_worksheet.update_cell(2, 3, item_price)
+            item_value = 1
+            order_worksheet.update_cell(2, 19, item_value)
+            print(f"Your order#: {ORDER_NUM}")
+            print(f"{item_value} {desserts_item_row[3]} Total: €{item_price}")
+            break
+        if choice == '5':
+            desserts_data = SHEET.worksheet('desserts')
+            order_worksheet = SHEET.worksheet("order")
+            item_price = desserts_data.cell('2', 5).value
+            order_worksheet.update_cell(2, 3, item_price)
+            item_value = 1
+            order_worksheet.update_cell(2, 20, item_value)
+            print(f"Your order#: {ORDER_NUM}")
+            print(f"{item_value} {desserts_item_row[4]} Total: €{item_price}")
+            break
+        if choice == '6':
+            desserts_data = SHEET.worksheet('desserts')
+            order_worksheet = SHEET.worksheet("order")
+            item_price = desserts_data.cell('2', 6).value
+            order_worksheet.update_cell(2, 3, item_price)
+            item_value = 1
+            order_worksheet.update_cell(2, 21, item_value)
+            print(f"Your order#: {ORDER_NUM}")
+            print(f"{item_value} {desserts_item_row[5]} Total: €{item_price}")
+            break
+    update_sales_sheet()
+
+    while True:
+        enter = input("Press Enter to Quit.\n" +
+                      "And then press Run Program to Start Again. Thanks")
+        if enter == '':
+            clear_screen()
+            quit()
+            # get_cust_name()
+            # break
+        else:
+            print("Please try again.")
 
 
 def order_screen():
@@ -324,8 +386,7 @@ def order_screen():
         print("1. Coffee")
         print("2. Tea")
         print("3. Desserts")
-        print("4. Update Order")
-        print("5. Checkout")
+        print("4. Previous Orders")
         print('********************************')
         choice = input("Enter Choice: \n")
         if choice == '1':
