@@ -205,11 +205,11 @@ def coffee_screen():
     update_sales_sheet()
 
     while True:
-        enter = input("Press Enter to Start Again. Thanks:\n")
+        enter = input("Press Enter to Quit.\n" +
+                      "And then press Run Program to Start Again. Thanks")
         if enter == '':
             clear_screen()
-            get_cust_name()
-            break
+            quit()
         else:
             print("Please try again.")
 
@@ -223,7 +223,59 @@ def tea_screen():
     print("Tea Screen")
     print('********************************')
     tea_data = SHEET.worksheet('tea').get_all_values()
-    print(tea_data)
+    tea_item_row = tea_data[0]
+    tea_price_row = tea_data[-1]
+    tea_data = SHEET.worksheet('tea')
+    order_worksheet = SHEET.worksheet("order")
+    z = 1
+    for x, y in zip(tea_item_row, tea_price_row):
+        print(f"{z}: {x} ============= € {y}\n")
+        z += 1
+    while True:
+        choice = input("Enter Choice: \n")
+        if choice == '1':
+            tea_data = SHEET.worksheet('tea')
+            order_worksheet = SHEET.worksheet("order")
+            item_price = tea_data.cell('2', 1).value
+            order_worksheet.update_cell(2, 3, item_price)
+            item_value = 1
+            order_worksheet.update_cell(2, 10, item_value)
+            print(f"Your order#: {ORDER_NUM}")
+            print(f"{item_value} {tea_item_row[0]} Total: €{item_price}")
+            break
+        if choice == '2':
+            tea_data = SHEET.worksheet('tea')
+            order_worksheet = SHEET.worksheet("order")
+            item_price = tea_data.cell('2', 2).value
+            order_worksheet.update_cell(2, 3, item_price)
+            item_value = 1
+            order_worksheet.update_cell(2, 11, item_value)
+            print(f"Your order#: {ORDER_NUM}")
+            print(f"{item_value} {tea_item_row[1]} Total: €{item_price}")
+            break
+        if choice == '3':
+            tea_data = SHEET.worksheet('tea')
+            order_worksheet = SHEET.worksheet("order")
+            item_price = tea_data.cell('2', 3).value
+            order_worksheet.update_cell(2, 3, item_price)
+            item_value = 1
+            order_worksheet.update_cell(2, 12, item_value)
+            print(f"Your order#: {ORDER_NUM}")
+            print(f"{item_value} {tea_item_row[2]} Total: €{item_price}")
+            break
+
+    update_sales_sheet()
+
+    while True:
+        enter = input("Press Enter to Quit.\n" +
+                      "And then press Run Program to Start Again. Thanks")
+        if enter == '':
+            clear_screen()
+            quit()
+            # get_cust_name()
+            # break
+        else:
+            print("Please try again.")
 
 
 def desserts_screen():
