@@ -1,3 +1,4 @@
+""" Module providing random function """
 import random
 import string
 from os import system, name
@@ -375,6 +376,15 @@ def desserts_screen():
             print("Please try again.")
 
 
+def get_sales():
+    """
+    Function to retreive sales data
+    """
+    sales_data = SHEET.worksheet("sales").get_all_values()
+    print(sales_data)
+    
+
+
 def order_screen():
     """
     Function providing the order screen
@@ -398,10 +408,17 @@ def order_screen():
         elif choice == '3':
             desserts_screen()
             break
+        elif choice == '4':
+            get_sales()
         else:
             clear_screen()
             print("Please enter a valid response like 1 for Coffee,"
                   + "2 for Tea etc.\n")
 
 
-get_cust_name()
+def main():
+    """ Main function body"""
+    get_cust_name()
+
+
+main()
