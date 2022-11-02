@@ -172,11 +172,7 @@ def coffee_screen():
             print(f"Your order#: {ORDER_NUM}")
             print(f"{item_value} {coffee_item_row[5]} Total: €{item_price}")
             break
-    # sales_value_row = order_worksheet.row_values(2)
-    # order_worksheet.delete_rows(2)
-    # print("Please pay at the counter. Thank you for the business.")
-    # sales_worksheet = SHEET.worksheet("sales")
-    # sales_worksheet.append_row(sales_value_row)
+
     update_sales_sheet()
 
     while True:
@@ -277,8 +273,6 @@ def tea_screen():
         if enter == '':
             clear_screen()
             quit()
-            # get_cust_name()
-            # break
         else:
             print("Please try again.")
 
@@ -370,8 +364,6 @@ def desserts_screen():
         if enter == '':
             clear_screen()
             quit()
-            # get_cust_name()
-            # break
         else:
             print("Please try again.")
 
@@ -381,8 +373,13 @@ def get_sales():
     Function to retreive sales data
     """
     sales_data = SHEET.worksheet("sales").get_all_values()
-    print(sales_data)
-    
+    sales_item_row = sales_data[0]
+    sales_price_row = sales_data[-1]
+    index_num = 1
+    print("ORDER_NUM|   ITEM_NAME       |ITEM_PRICE")
+    for item_name, price in zip(sales_item_row, sales_price_row):
+        print(f"{index_num}| {item_name == 1} | € {price}\n")
+        index_num += 1
 
 
 def order_screen():
