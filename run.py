@@ -48,8 +48,7 @@ def coffee_cup_ascii():
     print("      .-'---------|")
     print("     ( C|=========|")
     print("      '-.=========|")
-    print("        '_________'")
-    print("         '-------'  \n")
+    print("        '_________'\n")
 
 
 def tea_kettle_ascii():
@@ -68,7 +67,6 @@ def dessert_ascii():
     """Function for Coffe cup ascii art
     Credit: https://www.asciiart.eu/food-and-drinks/coffee-and-tea
     """
-    print("                 /")
     print("           o8Oo./")
     print("       ._o8o8o8Oo_.")
     print("      ._o8o8o8o8O0o_.")
