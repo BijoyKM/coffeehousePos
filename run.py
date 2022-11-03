@@ -61,12 +61,11 @@ def get_cust_name():
             print("Please enter a valid name. Thanks")
 
     while True:
-        enter = input("Press Enter for Order Screen:\n")
-        if enter == '':
+        enter = input("Please type Y for Order Screen:\n")
+        if enter == 'Y':
             order_screen()
             break
-        else:
-            print("Please try again.")
+        print("Please try again.")
 
 
 def clear_screen():
@@ -372,14 +371,32 @@ def get_sales():
     """
     Function to retreive sales data
     """
-    sales_data = SHEET.worksheet("sales").get_all_values()
-    sales_item_row = sales_data[0]
-    sales_price_row = sales_data[-1]
-    index_num = 1
-    print("ORDER_NUM|   ITEM_NAME       |ITEM_PRICE")
-    for item_name, price in zip(sales_item_row, sales_price_row):
-        print(f"{index_num}| {item_name == 1} | € {price}\n")
-        index_num += 1
+    sales_data = SHEET.worksheet("sales")
+    input_order_num = input("Please enter your order number: ")
+    order_num_cell = sales_data.find(input_order_num)
+    if order_num_cell is None:
+        print(f"{input_order_num} is not a Valid order number yet.")
+    else:
+        row_num = order_num_cell.row
+        cust_col = (order_num_cell).col + 1
+        customer = sales_data.cell(row_num, cust_col).value
+        order_val_col = cust_col + 1
+        order_val = sales_data.cell(row_num, order_val_col).value
+        name_row = sales_data.row_values(1)
+        item_row = sales_data.row_values(row_num)
+        name_list = []
+        for col_name, col_num in zip(name_row, item_row):
+            if col_name and col_num:
+                last_item = col_name
+                name_list.append(last_item)
+        print("Your search details are:\n")
+        print(f"ORDER Number: {input_order_num}")
+        print(f"Customer Name : {customer}")
+        print(f"Order : {name_list[3]}")
+        print(f"Price: €{order_val}")
+        print('********************************')
+        print("Please Enter Your Choice.")
+        print('********************************')
 
 
 def order_screen():
@@ -393,7 +410,7 @@ def order_screen():
         print("1. Coffee")
         print("2. Tea")
         print("3. Desserts")
-        print("4. Previous Orders")
+        print("4. Search Your Old Order")
         print('********************************')
         choice = input("Enter Choice: \n")
         if choice == '1':
