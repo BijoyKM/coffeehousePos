@@ -42,41 +42,41 @@ def coffee_cup_ascii():
     """Function for Coffe cup ascii art
     Credit: https://www.asciiart.eu/food-and-drinks/coffee-and-tea
     """
-    print("     )  (")
-    print("     (   ) )")
-    print("      ) ( (")
-    print("    _______)_")
-    print(" .-'---------|")
-    print("( C|=========|")
-    print(" '-.=========|")
-    print("   '_________'")
-    print("    '-------'")
+    print("          )  (")
+    print("          (   ) )")
+    print("           ) ( (")
+    print("         _______)_")
+    print("      .-'---------|")
+    print("     ( C|=========|")
+    print("      '-.=========|")
+    print("        '_________'")
+    print("         '-------'  \n\n")
 
 
 def tea_kettle_ascii():
     """Function for Coffe cup ascii art
     Credit: https://www.asciiart.eu/food-and-drinks/coffee-and-tea
     """
-    print("              ;,'")
-    print("     _o_      ;:;'")
-    print(" ,-.'---`.__ ;")
-    print("(( j`======',-'")
-    print("  `(     ) ")
-    print("    `-=-'    ")
+    print("                   ;,'")
+    print("          _o_      ;:;'")
+    print("      ,-.'---`.__ ;")
+    print("     (( j`======',-'")
+    print("       `(      ) ")
+    print("         `-=-'    \n\n")
 
 
 def dessert_ascii():
     """Function for Coffe cup ascii art
     Credit: https://www.asciiart.eu/food-and-drinks/coffee-and-tea
     """
-    print("            /")
-    print("      o8Oo./")
-    print("  ._o8o8o8Oo_.")
-    print(" ._o8o8o8o8O0o_.")
-    print("(==============)")
-    print(" (============)")
-    print("  (----------)")
-    print("   (--------)  ")
+    print("                 /")
+    print("           o8Oo./")
+    print("       ._o8o8o8Oo_.")
+    print("      ._o8o8o8o8O0o_.")
+    print("     (==============)")
+    print("      (============)")
+    print("       (----------)")
+    print("        (--------)  \n\n")
 
 
 def get_cust_name():
@@ -96,8 +96,8 @@ def get_cust_name():
             order_worksheet.update_cell(2, 1, ORDER_NUM)
             order_worksheet.update_cell(2, 2, cust_name)
             print(f"Your order number is: {ORDER_NUM}")
-            print("Please provide this at the counter when paying"
-                  + " for the order.")
+            print("Please keep note of this number if you would like to"
+                  + " search your order details.")
             break
         else:
             print("Please enter a valid name. Thanks")
@@ -128,9 +128,30 @@ def update_sales_sheet():
     order_worksheet = SHEET.worksheet("order")
     sales_value_row = order_worksheet.row_values(2)
     order_worksheet.delete_rows(2)
-    print("Please pay at the counter. Thank you for the business.")
     sales_worksheet = SHEET.worksheet("sales")
     sales_worksheet.append_row(sales_value_row)
+
+
+def pay_by_card():
+    pay_det = []
+    print("Please insert your 16 digit card number")
+    while True:
+        value = input("Enter Here: ")
+        if value.isdigit() and len(value) == 16:
+            pay_det.append(value)
+            break
+        else:
+            print("Entered information is not valid card number")
+    print(f"You have entered:{pay_det}\n")
+    print("Please enter your Four digit pin.")
+    while True:
+        ent_value = input("Enter Here: ")
+        if ent_value.isdigit() and len(ent_value) == 4:
+            print("Your payment is successful.")
+            break
+        else:
+            print("Your pin is invalid. Try again.")
+    print("Thanks for the business. Please visit again.")
 
 
 def coffee_screen():
@@ -216,6 +237,7 @@ def coffee_screen():
             break
 
     update_sales_sheet()
+    pay_by_card()
 
     while True:
         enter = input("Press Enter to Quit.\n" +
@@ -309,6 +331,7 @@ def tea_screen():
             break
 
     update_sales_sheet()
+    pay_by_card()
 
     while True:
         enter = input("Press Enter to Quit.\n" +
@@ -401,6 +424,7 @@ def desserts_screen():
             print(f"{item_value} {desserts_item_row[5]} Total: €{item_price}")
             break
     update_sales_sheet()
+    pay_by_card()
 
     while True:
         enter = input("Press Enter to Quit.\n" +
@@ -417,10 +441,11 @@ def get_sales():
     Function to retreive sales data
     """
     sales_data = SHEET.worksheet("sales")
-    input_order_num = input("Please enter your order number: ")
+    input_order_num = input("Please enter your order value in UPPERCASE: ")
     order_num_cell = sales_data.find(input_order_num)
     if order_num_cell is None:
-        print(f"{input_order_num} is not a Valid order number yet.")
+        print(f"{input_order_num} is not a Valid order value"
+              + "as no purchases are registered against it yet.")
     else:
         row_num = order_num_cell.row
         cust_col = (order_num_cell).col + 1
@@ -435,7 +460,7 @@ def get_sales():
                 last_item = col_name
                 name_list.append(last_item)
         print("Your search details are:\n")
-        print(f"ORDER Number: {input_order_num}")
+        print(f"ORDER VALUE: {input_order_num}")
         print(f"Customer Name : {customer}")
         print(f"Order : {name_list[3]}")
         print(f"Price: €{order_val}")
@@ -472,7 +497,7 @@ def order_screen():
         else:
             clear_screen()
             print("Please enter a valid response like 1 for Coffee,"
-                  + "2 for Tea etc.\n")
+                  + " 2 for Tea etc.\n")
 
 
 def main():
