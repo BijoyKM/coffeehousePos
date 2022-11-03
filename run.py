@@ -42,7 +42,6 @@ def coffee_cup_ascii():
     """Function for Coffe cup ascii art
     Credit: https://www.asciiart.eu/food-and-drinks/coffee-and-tea
     """
-    print("          )  (")
     print("          (   ) )")
     print("           ) ( (")
     print("         _______)_")
@@ -50,7 +49,7 @@ def coffee_cup_ascii():
     print("     ( C|=========|")
     print("      '-.=========|")
     print("        '_________'")
-    print("         '-------'  \n\n")
+    print("         '-------'  \n")
 
 
 def tea_kettle_ascii():
@@ -62,7 +61,7 @@ def tea_kettle_ascii():
     print("      ,-.'---`.__ ;")
     print("     (( j`======',-'")
     print("       `(      ) ")
-    print("         `-=-'    \n\n")
+    print("         `-=-'    \n")
 
 
 def dessert_ascii():
@@ -75,8 +74,7 @@ def dessert_ascii():
     print("      ._o8o8o8o8O0o_.")
     print("     (==============)")
     print("      (============)")
-    print("       (----------)")
-    print("        (--------)  \n\n")
+    print("       (----------)\n")
 
 
 def get_cust_name():
@@ -95,9 +93,9 @@ def get_cust_name():
             order_worksheet = SHEET.worksheet("order")
             order_worksheet.update_cell(2, 1, ORDER_NUM)
             order_worksheet.update_cell(2, 2, cust_name)
-            print(f"Your order number is: {ORDER_NUM}")
-            print("Please keep note of this number if you would like to"
-                  + " search your order details.")
+            print(f"Your order value is: {ORDER_NUM}")
+            print("Please keep note of this value if you would like to"
+                  + " search your order details next time.")
             break
         else:
             print("Please enter a valid name. Thanks")
