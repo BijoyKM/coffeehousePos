@@ -38,12 +38,53 @@ ORDER_NUM = create_order_num()
 ORDER_TOTAL = None
 
 
+def coffee_cup_ascii():
+    """Function for Coffe cup ascii art
+    Credit: https://www.asciiart.eu/food-and-drinks/coffee-and-tea
+    """
+    print("     )  (")
+    print("     (   ) )")
+    print("      ) ( (")
+    print("    _______)_")
+    print(" .-'---------|")
+    print("( C|=========|")
+    print(" '-.=========|")
+    print("   '_________'")
+    print("    '-------'")
+
+
+def tea_kettle_ascii():
+    """Function for Coffe cup ascii art
+    Credit: https://www.asciiart.eu/food-and-drinks/coffee-and-tea
+    """
+    print("              ;,'")
+    print("     _o_      ;:;'")
+    print(" ,-.'---`.__ ;")
+    print("(( j`======',-'")
+    print("  `(     ) ")
+    print("    `-=-'    ")
+
+
+def dessert_ascii():
+    """Function for Coffe cup ascii art
+    Credit: https://www.asciiart.eu/food-and-drinks/coffee-and-tea
+    """
+    print("      o8Oo./")
+    print("  ._o8o8o8Oo_.")
+    print(" ._o8o8o8o8O0o_.")
+    print("(==============)")
+    print(" (============)")
+    print("  (----------)")
+    print("   (--------)  ")
+
+
 def get_cust_name():
     """
     Function for getting customer name,
     adds order number and customer name to order_worksheet
     """
     print("*****Welcome to Coffeehouse!!*****\n")
+    coffee_cup_ascii()
     while True:
         print("Please provide your name. "
               + "It should be in between 2 to 25 characters long.")
@@ -100,6 +141,7 @@ def coffee_screen():
     print('********************************')
     print("Coffee Screen")
     print('********************************')
+    coffee_cup_ascii()
     coffee_data = SHEET.worksheet('coffee').get_all_values()
     coffee_item_row = coffee_data[0]
     coffee_price_row = coffee_data[-1]
@@ -192,6 +234,7 @@ def tea_screen():
     print('********************************')
     print("Tea Screen")
     print('********************************')
+    tea_kettle_ascii()
     tea_data = SHEET.worksheet('tea').get_all_values()
     tea_item_row = tea_data[0]
     tea_price_row = tea_data[-1]
@@ -284,6 +327,7 @@ def desserts_screen():
     print('********************************')
     print("Desserts Screen")
     print('********************************')
+    dessert_ascii()
     desserts_data = SHEET.worksheet('desserts').get_all_values()
     desserts_item_row = desserts_data[0]
     desserts_price_row = desserts_data[-1]
