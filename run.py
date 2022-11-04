@@ -445,8 +445,13 @@ def get_sales():
     """
     sales_data = SHEET.worksheet("sales")
     input_order_num = input("Please enter your order value in UPPERCASE: ")
+    order_value_list = sales_data.col_values(1)
+    del order_value_list[0]
     order_num_cell = sales_data.find(input_order_num)
     if order_num_cell is None:
+        print(f"{input_order_num} is not a Valid order value"
+              + "as no purchases are registered against it yet.")
+    if input_order_num not in order_value_list:
         print(f"{input_order_num} is not a Valid order value"
               + "as no purchases are registered against it yet.")
     else:
