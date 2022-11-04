@@ -44,9 +44,8 @@ def coffee_cup_ascii():
     """Function for Coffe cup ascii art
     Credit: https://www.asciiart.eu/food-and-drinks/coffee-and-tea
     """
-    print("          (   ) )")
     print("           ) ( (")
-    print("         _______)_")
+    print("         _)__(__))")
     print("      .-'---------|")
     print("     ( C|=========|")
     print("      '-.=========|")
