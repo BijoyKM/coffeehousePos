@@ -171,7 +171,7 @@ def coffee_screen():
         item_num += 1
     print("7: Back to Order Screen")
     while True:
-        choice = input("Enter Choice: \n")
+        choice = input("Enter Choice. Input number between 1 and 7: \n")
         if choice == '1':
             coffee_data = SHEET.worksheet('coffee')
             order_worksheet = SHEET.worksheet("order")
@@ -267,7 +267,7 @@ def tea_screen():
         item_num += 1
     print("7: Back to Order Screen")
     while True:
-        choice = input("Enter Choice: \n")
+        choice = input("Enter Choice. Input number between 1 and 7: \n")
         if choice == '1':
             tea_data = SHEET.worksheet('tea')
             order_worksheet = SHEET.worksheet("order")
@@ -363,7 +363,7 @@ def desserts_screen():
         item_num += 1
     print("7: Back to Order Screen")
     while True:
-        choice = input("Enter Choice: \n")
+        choice = input("Enter Choice. Input number between 1 and 7: \n")
         if choice == '1':
             desserts_data = SHEET.worksheet('desserts')
             order_worksheet = SHEET.worksheet("order")
@@ -450,10 +450,10 @@ def get_sales():
     order_num_cell = sales_data.find(input_order_num)
     if order_num_cell is None:
         print(f"{input_order_num} is not a Valid order value"
-              + "as no purchases are registered against it yet.")
+              + " as no purchases are registered against it yet.")
     if input_order_num not in order_value_list:
         print(f"{input_order_num} is not a Valid order value"
-              + "as no purchases are registered against it yet.")
+              + " as no purchases are registered against it yet.")
     else:
         row_num = order_num_cell.row
         cust_col = (order_num_cell).col + 1
