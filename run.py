@@ -30,6 +30,8 @@ def validate_cust_name(value):
 def create_order_num(chars=string.ascii_uppercase + string.digits, length=5):
     """
     Function to create alphanumeric order number of 5 character length
+    Credit: https://pythonexamples.org/python-generate-random
+    -string-of-specific-length/
     """
     return ''.join(random.choice(chars) for i in range(length))
 
@@ -92,8 +94,8 @@ def get_cust_name():
             order_worksheet.update_cell(2, 1, ORDER_NUM)
             order_worksheet.update_cell(2, 2, cust_name)
             print(f"Your order value is: {ORDER_NUM}")
-            print("Please keep note of this value if you would like to"
-                  + " search your order details next time.")
+            print("Please keep note of this value if you would like to search")
+            print("your order details next time.")
             break
         else:
             print("Please enter a valid name. Thanks")
@@ -156,8 +158,7 @@ def coffee_screen():
     """
     clear_screen()
     item_price = None
-    print('********************************')
-    print("Coffee Screen")
+    print("        Coffee Screen")
     print('********************************')
     coffee_cup_ascii()
     coffee_data = SHEET.worksheet('coffee').get_all_values()
@@ -169,6 +170,7 @@ def coffee_screen():
     for item_name, price in zip(coffee_item_row, coffee_price_row):
         print(f"{item_num}: {item_name} ============= € {price}\n")
         item_num += 1
+    print("7: Back to Order Screen")
     while True:
         choice = input("Enter Choice: \n")
         if choice == '1':
@@ -231,6 +233,8 @@ def coffee_screen():
             print(f"Your order#: {ORDER_NUM}")
             print(f"{item_value} {coffee_item_row[5]} Total: €{item_price}")
             break
+        elif choice == '7':
+            order_screen()
 
     update_sales_sheet()
     pay_by_card()
@@ -250,8 +254,7 @@ def tea_screen():
     Function providing the tea screen
     """
     clear_screen()
-    print('********************************')
-    print("Tea Screen")
+    print("          Tea Screen")
     print('********************************')
     tea_kettle_ascii()
     tea_data = SHEET.worksheet('tea').get_all_values()
@@ -263,6 +266,7 @@ def tea_screen():
     for item_name, price in zip(tea_item_row, tea_price_row):
         print(f"{item_num}: {item_name} ============= € {price}\n")
         item_num += 1
+    print("7: Back to Order Screen")
     while True:
         choice = input("Enter Choice: \n")
         if choice == '1':
@@ -325,6 +329,8 @@ def tea_screen():
             print(f"Your order#: {ORDER_NUM}")
             print(f"{item_value} {tea_item_row[5]} Total: €{item_price}")
             break
+        if choice == '7':
+            order_screen()
 
     update_sales_sheet()
     pay_by_card()
@@ -344,8 +350,7 @@ def desserts_screen():
     Function providing the desserts screen
     """
     clear_screen()
-    print('********************************')
-    print("Desserts Screen")
+    print("       Desserts Screen")
     print('********************************')
     dessert_ascii()
     desserts_data = SHEET.worksheet('desserts').get_all_values()
@@ -357,6 +362,7 @@ def desserts_screen():
     for item_name, price in zip(desserts_item_row, desserts_price_row):
         print(f"{item_num}: {item_name} ============= € {price}\n")
         item_num += 1
+    print("7: Back to Order Screen")
     while True:
         choice = input("Enter Choice: \n")
         if choice == '1':
@@ -419,6 +425,8 @@ def desserts_screen():
             print(f"Your order#: {ORDER_NUM}")
             print(f"{item_value} {desserts_item_row[5]} Total: €{item_price}")
             break
+        if choice == '7':
+            order_screen()
     update_sales_sheet()
     pay_by_card()
 
