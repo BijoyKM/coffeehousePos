@@ -81,11 +81,12 @@ def get_cust_name():
     Function for getting customer name,
     adds order number and customer name to order_worksheet
     """
-    print("*****Welcome to Coffeehouse!!*****\n")
+    print("*****Welcome to Coffeehouse !!*****\n")
+    print("    ******Point of Sale*****\n\n")
     coffee_cup_ascii()
     while True:
-        print("Please provide your name. "
-              + "It should be in between 2 to 25 characters long.")
+        print("Please provide your name.")
+        print("It should be in between 2 to 25 characters long.\n\n")
         cust_name = input("Please enter your name: \n")
         if validate_cust_name(cust_name):
             print(f"Hello {cust_name}")
