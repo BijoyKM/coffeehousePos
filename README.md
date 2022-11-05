@@ -262,31 +262,70 @@ The flowchart of the application can be found ![here](/assets/images/readmeimage
 
 
 ## Future Features which can implemented
-
-### Better UI
-    * To use HTML and CSS to give user a more attractive UI.
-    * To add functions to get more order details in one go. 
-    * To add functions where user can buy more items in one go.
-    * To add functions where user can see the basket with items to be paid for.
-
-  
+* To use HTML and CSS to give user a more attractive UI.
+* To add functions to get more order details in one go. 
+* To add functions where user can buy more items in one go.
+* To add functions where user can see the basket with items to be paid for.
 
 
+# Technologies Used
+*  ## Languages Used
+    * [Python](https://www.python.org/) 
+
+* ## Frameworks, Libraries & Programs Used
+    * [Google Sheets](https://en.wikipedia.org/wiki/Google_Sheets) : used as the external database to store item names, prices, order and sales information
+    * [Google Drive API](https://developers.google.com/drive/api/v3/about-sdk) : used to generate      credentials used in the project to securely access the Google Spreadsheet.
+    * [Google Sheets API](https://developers.google.com/sheets/api) : used to support interactions (e.g. 
+      read/write functionality) between the code and data stored in the Google Spreadsheet.
+    * [gspread](https://docs.gspread.org/en/latest/) : Python API for Google Sheets
+    * [Google Auth](https://google-auth.readthedocs.io/en/master/) : Google authentication library for  
+      Python required to use the credentials generated for Google Drive API
+    * [Git](https://git-scm.com/) : was used for version control by utilising the Gitpod terminal to commit 
+      to Git and Push to GitHub.
+    * [Github](https://github.com/) : is used as the respository for the projects code after being pushed 
+      from Git.
+    * [Heroku](https://heroku.com/) : is used to deploy the application and provides an enviroment in which the code can execute.
+    * [draw.io](https://app.diagrams.net/) : is used to create the flow chart.
 
 
+# Testing
 
+## Manual Testing 
+   
+![Manual Testing](/assets/images/readmeimages/ManualTestImage.jpg "Manual Testing")
 
+* PEP8 Testing:
+  Since Pep8online is down, so installed So as a alternative option have installed a extension within VS Code to flag any errors.
 
+   * Run the command pip3 install pycodestyle Note that this extension may already be installed, in which case this command will do nothing.
+   * In your workspace, press Ctrl+Shift+P (or Cmd+Shift+P on Mac).
+   * Type the word linter into the search bar that appears, and click on Python: Select Linter from the filtered results.
+   * Select pycodestyle from the list.
+   * PEP8 errors will now be underlined in red, as well as being listed in the PROBLEMS tab beside your terminal.
 
+Any styling errors would show up as a warning or critical error.
+In the image below I have highlighted a red rectangle around the results. Left to right you have critical errors, warnings and info. We do not have to worry about the info flags. 
+  * There are 0 Critical errors and 3 warnings which are not related to coffeehousepos code.
 
+![pccodesytlecheck](/assets/images/readmeimages/pycodestylecheck.jpg "pccodesytlecheck")
 
+## Bugs
 
+* During earlier stage in program the Order value search were producing wrong order details. This was due the user entered value was searched in the whole sales Google sheet. 
+Hence if user entered username as order value or item name as value the search was producing errors.
 
+![error order search](/assets/images/readmeimages/errordersearch.jpg "error order search")
 
+* To fix this a list was created with all values of ORDER_NUM column. And from that list ORDER_NUM was removed as it was not real order value created but an heading in the sheet. User entered order value was ran through this list as well which fixed the issue.
+* There are no other bugs detected.
 
+## Known Bugs
 
+![knownbug search](/assets/images/readmeimages/knownbug.jpg "knownbug search")
 
+* Since order value search is going through two if statements sometime if the order value is not found we get 2 errors instead of one.
 
+![iffunctionssearch](/assets/images/readmeimages/knownbug.jpg "iffunctionssearch")
 
 
 
