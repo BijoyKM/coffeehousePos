@@ -447,6 +447,17 @@ By forking out of this repository you will be able to view and edit the code wit
   * Install gspread and google-auth libraries in the development environment using the command 'pip3 install gspread google-auth'
 
 
+# Credits
+
+* ## Coding
+* 'Love Sanwiches' project has really helped in understanding the python concepts and using google sheets.
+* [Code Institute](https://codeinstitute.net/ie/) classes and videos helped in most of the concepts
+* [W3C](https://www.w3schools.com/html/) helped in quick understanding and testing of various Python concepts.
+* [gspread](https://docs.gspread.org/en/v5.6.1/index.html) helped a lot in understanding how to access cell, row, column and other various operations on Google Sheets.
+
+
+
+
 # Acknowledgments
 
 I would like to thank and acknowledge the following people:
