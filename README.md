@@ -328,7 +328,132 @@ Hence if user entered username as order value or item name as value the search w
 ![iffunctionssearch](/assets/images/readmeimages/knownbug.jpg "iffunctionssearch")
 
 
+## Deployment
 
+The site was deployed to Heroku. Please follow the below steps.
+
+### Deployment steps
+
+1. add the list of requirements by writing in the terminal "pip3 freeze > requirements.txt"
+2. Add six and colorama==0.4.4 as they didn't seem to add automatically
+2. Git add and git commit the changes made
+3. Log into [Heroku](https://dashboard.heroku.com/apps) or create a new account and log in
+
+4. top right-hand corner click "New" and choose the option Create new app, if you are a new user, the "Create new app" button will appear in the middle of the screen
+5. Write app name - it has to be unique, it cannot be the same as this app
+6. Choose Region - I am in Europe
+7. Click "Create App"
+
+The page of your project opens.
+8. Choose "settings" from the menu on the top of the page
+9. Go to section "Config Vars" and click button "Reveal Config Vars"
+
+10. Go to git pod and copy the content of "creds.json" file
+11. In the field for "KEY" enter "CREDS" - all capital letters
+12. Paste the content of "creds.json" and paste to field "VALUE" Click button "Add"
+13. Add another key "PORT" and value "8000"
+
+14. Go to section "Build packs" and click "Add build pack"
+    - in this new window - click Python and "Save changes"
+    - click "Add build pack" again
+    - in this new window - click Node.js and "Save changes"
+    - take care to have those apps in this order: Python first, Node.js second, drag and drop if needed
+
+15. Next go to "Deploy" in the menu bar on the top 
+16. Go to section "deployment method", choose "GitHub"
+17. New section will appear "Connect to GitHub" - Search for the repository to connect to
+18. type the name of your repository and click "search"
+19. once Heroku finds your repository - click "connect"
+
+20. Scroll down to the section "Automatic Deploys"
+21. Click "Enable automatic deploys" or choose "Deploy branch" and manually deploy
+22. Click "Deploy branch" Once the program runs:
+you should see the message "the app was sussesfully deployed"
+23. Click the button "View"
+
+### Forking the GitHub repository
+By forking out of this repository you will be able to view and edit the code without affecting the original repository. 
+
+1. Locate the GitHub repository. Link can be found [here](https://github.com/BijoyKM/coffeehousePos).
+2. Click the button in the top right-hand corner "Fork"
+3. This will take you to your own repository to a fork that is called the same as the original branch. 
+
+### Making a local clone
+
+1. Locate the GitHub repository. Link can be found [here](https://github.com/BijoyKM/coffeehousePos).
+2. Next to the green Gitpod button you will see a button "code" with an arrow pointing down
+3. You are given the option to open with GitHub desktop or download zip
+4. You can also copy https full link, go to git bash and write git clone and paste the full link
+
+### Google spreadsheet and APIs
+  * Google sheets was used as database.
+  * There were 5 sheets created. Coffee, Tea, Desserts, Order and Sales
+  * Coffee sheet had following headings and values.
+
+  ![Coffee sheet image](/assets/images/readmeimages/coffeeitemsheetimage.jpg "Coffee sheet image")
+  
+
+  * Tea sheet had following headings and values.
+
+  ![Tea sheet image](/assets/images/readmeimages/teaitemsheetimage.jpg "Tea sheet image")
+
+
+  * Desserts sheet had following headings and values.
+
+  ![Desserts sheet image](/assets/images/readmeimages/dessertsitemsheetimage.jpg "Desserts sheet image")
+
+  ### Set up APIs using the Google Cloud Platform
+
+     * Access the [Google Cloud Platform](https://console.cloud.google.com/)
+     * Create a new project and give it a unique name, then select the project to go to the project dashboard
+     * Setup Google Drive credentials 
+
+        * Click on the hamburger menu in the top left of the screen to access the navigation menu
+        * On the left hand menu select 'APIs and Services' and then 'Library'
+        * Search for Google Drive API
+        * Select Google Drive API and click on 'enable' to get to the API and Services Overview page 
+        * Click on the Create Credentials button near the top left of the screen
+        * Select 'Google Drive' API from the dropdown for 'Credential Type'
+        * Select the 'Application Data' radio button in the 'What data will you be accessing' area
+        * Select the 'No, I'm not using them' for the 'Are you planning to use this API with Compute 
+          Engine, Kubernetes Engine, App Engine, or Cloud Functions?' area
+        * Cick Next
+        * On the Create Service Account page, step 1 is to enter a service account name in the first 
+          text box.  Any value can be entered here.
+        * Click on 'Create and Continue'
+        * On step 2, 'Grant this service account access to project',  select Basic -> Editor from  
+          the 'Select a Role' dropdown.
+        * Click on Continue
+        * On step 3, 'Grant users access to this service account', simply press Done, no input is 
+          necessary
+        * On the next page, click on the service account name created (listed under the Service 
+          Accounts area) to go to the configuration page for the new service account.
+        * Click on the KEYS tab at the top middle of the screen.
+        * Click on the Add Key dropdown and select Create New Key.
+        * Select the JSON radio button then click Create. The json file with the new API credentials 
+          will download your machine. 
+        * Rename the downloaded file to creds.json.  This filename is already listed in the   project .  gitignore file and so no further action will be needed to prevent it being  accidentally uploaded to github 
+        * Copy the new creds.json file into the local clone
+        * In the creds.json file, copy the value for "client email" and then on Google Drive, share 
+          the spreadsheet created above with this email address assigning a role of Editor.
+
+
+### Enable Google Sheets API 
+* Go back to the dashboard for the project on Google Cloud Platform and access the navigation menu as before
+    * On the left hand menu select 'APIs and Services' and then 'Library'
+    * Search for Google Sheets API
+    * Select Google Sheets API and click on 'enable'
+
+  * Install gspread and google-auth libraries in the development environment using the command 'pip3 install gspread google-auth'
+
+
+# Acknowledgments
+
+I would like to thank and acknowledge the following people:
+* My Mentor Rahul Lakhanpal for all his feedback, guidance and support for this project.
+* My daughter and Wife who helped with the testing the application patiently.
+* Code Institute, Kasia and Kenan for their helpful advice during the weekly stand-up meetings.
+* Slack Community and also MSLETB A and B group students.
 
 
 
